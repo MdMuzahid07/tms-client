@@ -1,65 +1,60 @@
-import baseApi from "../../api/baseApi";
-import type { ApiResponse, Task, TaskStatus } from "@/types/api";
+import { baseApi } from '../../api/baseApi'
+import {
+  TaskWithAssignee,
+  CreateTaskRequest,
+  UpdateTaskRequest,
+  UpdateTaskStatusRequest,
+} from '../../../types'
 
-interface TaskPayload {
-  title?: string;
-  description?: string;
-  assignedToId?: string | null;
-}
-
-const tasksApi = baseApi.injectEndpoints({
+export const tasksApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getTasks: builder.query<ApiResponse<Task[]>, void>({
-      query: () => "/tasks",
-      providesTags: ["Tasks"],
+    getTasks: builder.query<TaskWithAssignee[], void>({
+      query: () => '/tasks',
+      providesTags: ['Task'],
     }),
-    getTask: builder.query<ApiResponse<Task>, string>({
-      query: (id: string) => `/tasks/${id}`,
+    getTaskById: builder.query<TaskWithAssignee, string>({
+      query: (id) => `/tasks/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Task', id }],
     }),
-    createTask: builder.mutation<ApiResponse<Task>, TaskPayload>({
-      query: (data: TaskPayload) => ({
-        url: "/tasks",
-        method: "POST",
+    createTask: builder.mutation<TaskWithAssignee, CreateTaskRequest>({
+      query: (task) => ({
+        url: '/tasks',
+        method: 'POST',
+        body: task,
+      }),
+      invalidatesTags: ['Task'],
+    }),
+    updateTask: builder.mutation<TaskWithAssignee, { id: string; data: UpdateTaskRequest }>({
+      query: ({ id, data }) => ({
+        url: `/tasks/${id}`,
+        method: 'PATCH',
         body: data,
       }),
-      invalidatesTags: ["Tasks", "AuditLogs"],
+      invalidatesTags: (result, error, { id }) => ['Task', { type: 'Task', id }],
     }),
-    updateTask: builder.mutation<ApiResponse<Task>, TaskPayload & { id: string }>(
-      {
-        query: ({ id, ...data }: TaskPayload & { id: string }) => ({
-          url: `/tasks/${id}`,
-          method: "PATCH",
-          body: data,
-        }),
-        invalidatesTags: ["Tasks", "AuditLogs"],
-      },
-    ),
-    updateTaskStatus: builder.mutation<
-      ApiResponse<Task>,
-      { id: string; status: TaskStatus }
-    >({
-      query: ({ id, status }: { id: string; status: TaskStatus }) => ({
+    updateTaskStatus: builder.mutation<TaskWithAssignee, { id: string; data: UpdateTaskStatusRequest }>({
+      query: ({ id, data }) => ({
         url: `/tasks/${id}/status`,
-        method: "PATCH",
-        body: { status },
+        method: 'PATCH',
+        body: data,
       }),
-      invalidatesTags: ["Tasks", "AuditLogs"],
+      invalidatesTags: (result, error, { id }) => ['Task', { type: 'Task', id }],
     }),
-    deleteTask: builder.mutation<ApiResponse<{ message: string }>, string>({
-      query: (id: string) => ({
+    deleteTask: builder.mutation<{ message: string }, string>({
+      query: (id) => ({
         url: `/tasks/${id}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
-      invalidatesTags: ["Tasks", "AuditLogs"],
+      invalidatesTags: ['Task'],
     }),
   }),
-});
+})
 
 export const {
   useGetTasksQuery,
-  useGetTaskQuery,
+  useGetTaskByIdQuery,
   useCreateTaskMutation,
   useUpdateTaskMutation,
   useUpdateTaskStatusMutation,
   useDeleteTaskMutation,
-} = tasksApi;
+} = tasksApi

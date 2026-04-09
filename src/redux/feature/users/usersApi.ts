@@ -1,13 +1,13 @@
-import baseApi from "../../api/baseApi";
-import type { ApiResponse, User } from "@/types/api";
+import { baseApi } from '../../api/baseApi'
+import { User } from '../../../types'
 
-const usersApi = baseApi.injectEndpoints({
+export const usersApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getUsers: builder.query<ApiResponse<User[]>, void>({
-      query: () => "/users",
-      providesTags: ["Users"],
+    getUsers: builder.query<User[], void>({
+      query: () => '/users',
+      providesTags: ['User'],
     }),
   }),
-});
+})
 
-export const { useGetUsersQuery } = usersApi;
+export const { useGetUsersQuery } = usersApi

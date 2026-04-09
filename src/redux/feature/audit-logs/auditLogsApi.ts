@@ -1,13 +1,17 @@
-import type { ApiResponse, AuditLog } from "@/types/api";
-import baseApi from "../../api/baseApi";
+import { baseApi } from '../../api/baseApi'
+import { AuditLogWithRelations } from '../../../types'
 
-const auditLogsApi = baseApi.injectEndpoints({
+export const auditLogsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAuditLogs: builder.query<ApiResponse<AuditLog[]>, void>({
-      query: () => "/audit-logs",
-      providesTags: ["AuditLogs"],
+    getAuditLogs: builder.query<AuditLogWithRelations[], void>({
+      query: () => '/audit-logs',
+      providesTags: ['AuditLog'],
+    }),
+    getAuditLogsByTask: builder.query<AuditLogWithRelations[], string>({
+      query: (taskId) => `/audit-logs/task/${taskId}`,
+      providesTags: (result, error, taskId) => [{ type: 'AuditLog', id: taskId }],
     }),
   }),
-});
+})
 
-export const { useGetAuditLogsQuery } = auditLogsApi;
+export const { useGetAuditLogsQuery, useGetAuditLogsByTaskQuery } = auditLogsApi
