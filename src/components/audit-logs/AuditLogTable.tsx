@@ -138,7 +138,7 @@ export function AuditLogTable({ logs }: AuditLogTableProps) {
           </SheetHeader>
 
           {selectedLog && (
-            <div className="space-y-6">
+            <div className="space-y-6 p-4">
               <div className="grid grid-cols-2 gap-4">
                 <DetailItem
                   label="Action"
