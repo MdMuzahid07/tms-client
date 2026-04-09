@@ -1,4 +1,4 @@
-import { Skeleton } from '@/components/ui/skeleton'
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
   TableBody,
@@ -6,16 +6,19 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
+} from "@/components/ui/table";
 
 interface DataTableSkeletonProps {
-  rows?: number
-  cols?: number
+  rows?: number;
+  cols?: number;
 }
 
-export function DataTableSkeleton({ rows = 5, cols = 5 }: DataTableSkeletonProps) {
+export function DataTableSkeleton({
+  rows = 5,
+  cols = 5,
+}: DataTableSkeletonProps) {
   return (
-    <div className="rounded-xl border bg-card">
+    <div className="bg-card rounded border">
       <Table>
         <TableHeader>
           <TableRow>
@@ -39,5 +42,5 @@ export function DataTableSkeleton({ rows = 5, cols = 5 }: DataTableSkeletonProps
         </TableBody>
       </Table>
     </div>
-  )
+  );
 }

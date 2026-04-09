@@ -81,7 +81,7 @@ export default function TaskDetailsPage() {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Left Column - Details */}
         <div className="space-y-8 lg:col-span-2">
-          <Card className="bg-card/50 overflow-hidden rounded-xl border">
+          <Card className="bg-card/50 overflow-hidden rounded border">
             <CardContent className="p-8">
               <div className="space-y-6">
                 <div>
@@ -122,7 +122,7 @@ export default function TaskDetailsPage() {
 
         {/* Right Column - Metadata */}
         <div className="space-y-6">
-          <Card className="bg-card/50 rounded-xl border">
+          <Card className="bg-card/50 rounded border">
             <CardContent className="space-y-6 p-6">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">

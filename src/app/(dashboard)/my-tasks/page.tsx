@@ -28,7 +28,7 @@ export default function MyTasksPage() {
   }, [myTasks, activeTab]);
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-2 space-y-8 pb-20 duration-300">
+    <div className="animate-in fade-in slide-in-from-bottom-2 mt-16 space-y-8 pb-20 duration-300">
       <PageHeader
         title="My Tasks"
         subtitle="Manage and track your assigned tasks and their progress."

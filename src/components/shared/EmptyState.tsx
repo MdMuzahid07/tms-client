@@ -15,7 +15,7 @@ export function EmptyState({
   action,
 }: EmptyStateProps) {
   return (
-    <div className="border-border bg-card/50 flex flex-col items-center justify-center rounded-xl border-2 border-dashed p-12 text-center">
+    <div className="border-border bg-card/50 flex flex-col items-center justify-center rounded border-2 border-dashed p-12 text-center">
       <div className="bg-muted mb-4 flex h-12 w-12 items-center justify-center rounded">
         <Icon className="text-muted-foreground h-6 w-6" />
       </div>

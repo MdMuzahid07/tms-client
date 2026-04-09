@@ -40,7 +40,7 @@ export function AuditLogTable({ logs }: AuditLogTableProps) {
 
   return (
     <>
-      <div className="bg-card overflow-hidden rounded-xl border">
+      <div className="bg-card overflow-hidden rounded border">
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>

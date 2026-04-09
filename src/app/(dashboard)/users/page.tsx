@@ -37,7 +37,7 @@ export default function UsersPage() {
       {isLoading ? (
         <DataTableSkeleton rows={8} cols={4} />
       ) : (
-        <div className="bg-card overflow-hidden rounded-xl border">
+        <div className="bg-card overflow-hidden rounded border">
           <Table>
             <TableHeader>
               <TableRow className="hover:bg-transparent">

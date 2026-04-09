@@ -75,7 +75,7 @@ export function LoginForm() {
   };
 
   return (
-    <div className="bg-card relative rounded-xl border p-8 shadow-2xl">
+    <div className="bg-card relative rounded border p-8 shadow-2xl">
       <div className="mb-8 space-y-2">
         <h2 className="text-foreground text-2xl font-bold tracking-tight">
           Welcome back

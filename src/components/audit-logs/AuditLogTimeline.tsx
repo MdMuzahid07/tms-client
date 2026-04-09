@@ -15,7 +15,7 @@ interface AuditLogTimelineProps {
 export function AuditLogTimeline({ logs }: AuditLogTimelineProps) {
   if (logs.length === 0) {
     return (
-      <div className="bg-muted/30 text-muted-foreground flex flex-col items-center justify-center rounded-xl border border-dashed p-12">
+      <div className="bg-muted/30 text-muted-foreground flex flex-col items-center justify-center rounded border border-dashed p-12">
         <Clock className="mb-2 h-8 w-8 opacity-50" />
         <p className="text-sm">No activity recorded for this task yet.</p>
       </div>
